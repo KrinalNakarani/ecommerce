@@ -1,7 +1,7 @@
 class StoreModel {
-  dynamic? id;
-  dynamic? price;
-  dynamic? title, description, category, image;
+  int? id;
+  double? price;
+  String? title, description, category, image;
   List<dynamic>? rating;
 
   StoreModel(
@@ -21,18 +21,18 @@ class StoreModel {
       description: map['description'],
       category: map['category'],
       image: map['image'],
-      rating:map['rating'].map((e)=>rating().ratingFactory(e)).toList(),
+      rating: map['rating'].map((e)=>Rating().ratingFactory(e)).toList(),
     );
   }
 }
 
-class rating {
-  dynamic? rate;
-  dynamic? count;
+class Rating {
+  double? rate;
+  int? count;
 
-  rating({this.rate, this.count});
+  Rating({this.rate, this.count});
 
-  rating ratingFactory(Map map) {
-    return rating(rate: map['rate'], count: map['count']);
+  Rating ratingFactory(Map map) {
+    return Rating(rate: map['rate'], count: map['count']);
   }
 }

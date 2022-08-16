@@ -1,8 +1,8 @@
 class StoreModel {
   int? id;
-  double? price;
+  dynamic price;
   String? title, description, category, image;
-  List<dynamic>? rating;
+  Rating? rating;
 
   StoreModel(
       {this.id,
@@ -21,13 +21,13 @@ class StoreModel {
       description: map['description'],
       category: map['category'],
       image: map['image'],
-      rating: map['rating'].map((e)=>Rating().ratingFactory(e)).toList(),
+      rating: Rating().ratingFactory(map['rating']),
     );
   }
 }
 
 class Rating {
-  double? rate;
+  dynamic rate;
   int? count;
 
   Rating({this.rate, this.count});

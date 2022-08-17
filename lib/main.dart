@@ -8,14 +8,36 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<HomeProvider>(
-            create: (context) => HomeProvider(),),
+          create: (context) => HomeProvider(),
+        ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: {
-          '/': (context) => HomeScreen(),
+      child: Consumer<HomeProvider>(
+        builder: (context, provider, _) {
+          return MaterialApp(
+            theme: provider.isTheme ? LightTheme : DarkTheme,
+            debugShowCheckedModeBanner: false,
+            routes: {
+              '/': (context) => HomeScreen(),
+            },
+          );
         },
       ),
     ),
   );
 }
+
+ThemeData LightTheme = ThemeData(
+  appBarTheme: AppBarTheme(color: Colors.green.shade900),
+  brightness: Brightness.light,
+  textTheme: TextTheme(
+    bodyText1: TextStyle(color: Colors.black),
+  ),
+);
+
+ThemeData DarkTheme = ThemeData(
+  appBarTheme: AppBarTheme(color: Colors.green),
+  brightness: Brightness.dark,
+  textTheme: TextTheme(
+    bodyText1: TextStyle(color: Colors.black),
+  ),
+);

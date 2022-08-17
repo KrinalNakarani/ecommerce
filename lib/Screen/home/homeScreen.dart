@@ -25,11 +25,18 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: Text("Products"),
           centerTitle: true,
+          actions: [
+            Switch(
+                value: providertrue.isTheme,
+                onChanged: (value) {
+                  providerfalse.Theme1(value);
+                })
+          ],
         ),
         body: Container(
           height: double.infinity,
           width: double.infinity,
-          color: Colors.grey.shade400,
+          // color: Colors.grey.shade400,
           child: Column(
             children: [
               Expanded(
@@ -42,88 +49,86 @@ class _HomeScreenState extends State<HomeScreen> {
                       List<dynamic> m1 = snapshot.data;
                       return Padding(
                         padding: EdgeInsets.all(10),
-                        child: Expanded(
-                          child: GridView.builder(
-                            itemCount: m1.length,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                            ),
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: (){
-                                  Navigator.pushNamed(context, '');
-                                },
-                                child: Container(
-                                  height: 200,
-                                  width: 200,
-                                  color: Colors.white,
-                                  margin: EdgeInsets.all(3),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        height: 120,
-                                        width: 120,
-                                        child: Image.network(
-                                          "${m1[index].image}",
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text("${m1[index].category}"),
-                                          Spacer(),
-                                          Container(
-                                            height: 25,
-                                            width: 50,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              color: Colors.green,
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                Spacer(),
-                                                Text("${m1[index].rating.rate}"),
-                                                Icon(
-                                                  Icons.star,
-                                                  size: 20,
-                                                  color: Colors.yellow,
-                                                ),
-                                                Spacer(),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            "Rs ${m1[index].price}",
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
+                        child: GridView.builder(
+                          itemCount: m1.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
                           ),
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '');
+                              },
+                              child: Container(
+                                height: 200,
+                                width: 200,
+                                // color: Colors.white,
+                                margin: EdgeInsets.all(3),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 120,
+                                      width: 120,
+                                      child: Image.network(
+                                        "${m1[index].image}",
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text("${m1[index].category}"),
+                                        Spacer(),
+                                        Container(
+                                          height: 25,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: Colors.green,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Spacer(),
+                                              Text("${m1[index].rating.rate}"),
+                                              Icon(
+                                                Icons.star,
+                                                size: 20,
+                                                color: Colors.yellow,
+                                              ),
+                                              Spacer(),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          "Rs ${m1[index].price}",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       );
                     }
